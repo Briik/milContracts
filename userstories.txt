@@ -1,0 +1,58 @@
+
+
+----
+PURELY FRONT-END APP
+As a user I want to see that Bryce is capable of serving up a beautiful UX.
+As a  user I want demonstration of Bryce's ability to use Angular.
+As a user I want to see some pretty fucking photos and watch cool videos
+    on the same damn page!
+
+Technology:
+Front End: Angular, SASS, jQuery
+Server: Ruby on Rails
+DB: Who cares? SQL.
+
+Pros:  A week of SASS and Angular. Easily done.
+Cons: I have no cool visual content to share :( I don't really like front end stuff.
+Conclusion: DROP idea, sounds lame.
+
+----
+RAILS APP that SERVES JSON with an API:
+Topic:
+DATA:
+SOUCES:
+
+Technology:
+Front End: Angular. SASS. Other JavaScript only for advanced functionality.
+Server:  Ruby on Rails? - Simple, relatively easy comp Express&Node, CLEAN
+DB:  PostreSQL... relational data, updated infrequently.
+
+NOT NEEDED: user-accesible CRUD. CRUD is entirely done autonomously.
+
+Upside:  If specifically tailored for use by a large firm that needs to share data globally, and have that data modified based on the type of user/function, then this could be a cool and useful application. However, this needs to be specific and easily explained in lay terms. IE. non-target user must inherently understand why the backend modification of data for each user type is valuable. Visuals must be solid.
+Downside:  Lame. No USER INTERACTION!
+Conclusion: MODIFY idea for increased user interaction and clear value-add.
+
+----
+TWITTER idea:
+As a user I should be able to see the number of tweets mentioning terrorist stuff.
+        and a % of those that are positive
+    terrorist stuff near me based on location of the person tweeting.
+    terrorist stuff as a % of total tweets mentioning terrorism in my area.
+Change my area, so i can see what the results would be for other locations.
+
+Be alerted to a high number of recent terrorist-related tweets in my area by a color and or sound on the screen.
+
+Be alerted (similarly as above) when there is a sudden spike in terrorism related tweets in my area.
+
+See a notification whenever there is a surge in terrorism related tweets globally.
+
+Technology:
+Front End: Angular. jQuery. SASS
+Server: Node API serving responses to requests - speed for large num of users
+DB:  None required... possibly create one to store twitter data (num of pro-terrorism tweets by day) for key cities.
+
+NOT NEEDED:  User Authentication. Database. OAuth (possibly, if the app gets popular).
+
+Downside:  Dangerous. Will attract the wrong kind of attention.
+Conclusion: DROP idea. Possibly reconsider later with clandestine approach.
