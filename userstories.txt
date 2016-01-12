@@ -4,8 +4,7 @@
 PURELY FRONT-END APP
 As a user I want to see that Bryce is capable of serving up a beautiful UX.
 As a  user I want demonstration of Bryce's ability to use Angular.
-As a user I want to see some pretty fucking photos and watch cool videos
-    on the same damn page!
+As a user I want to see some pretty stuff
 
 Technology:
 Front End: Angular, SASS, jQuery
@@ -13,8 +12,8 @@ Server: Ruby on Rails
 DB: Who cares? SQL.
 
 Pros:  A week of SASS and Angular. Easily done.
-Cons: I have no cool visual content to share :( I don't really like front end stuff.
-Conclusion: DROP idea, sounds lame.
+Cons: I have no cool proprietary photos or videos
+Conclusion: DROP idea
 
 ----
 RAILS APP that SERVES JSON with an API:
@@ -29,8 +28,8 @@ DB:  PostreSQL... relational data, updated infrequently.
 
 NOT NEEDED: user-accesible CRUD. CRUD is entirely done autonomously.
 
-Upside:  If specifically tailored for use by a large firm that needs to share data globally, and have that data modified based on the type of user/function, then this could be a cool and useful application. However, this needs to be specific and easily explained in lay terms. IE. non-target user must inherently understand why the backend modification of data for each user type is valuable. Visuals must be solid.
-Downside:  Lame. No USER INTERACTION!
+Upside:  This needs to be specific and easily explained in lay terms. IE. non-target user must inherently understand why the backend modification of data for each user type is valuable. Visuals must be solid.
+Downside:  No USER INTERACTION!
 Conclusion: MODIFY idea for increased user interaction and clear value-add.
 
 ----
