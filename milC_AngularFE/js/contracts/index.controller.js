@@ -23,6 +23,8 @@
            })
            self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
        });
+    //    self.data = GET AN ARRAY OF DATAPOINTS FOR ME!!!
+    //      self.labels = GET AN ARRAY OF DAYS!!! (self.contracts.title)??
        angular.element(document).ready(function(){
            // Grab the chart
            var ctx = $("#myChart").get(0).getContext("2d");
@@ -30,6 +32,7 @@
            Chart.defaults.global.responsive = true;
            // new Chart(ctx).PolarArea(data, options);
            var data = {
+            //    set this labels = self.labels;
                labels: ["January", "February", "March", "April", "May", "June", "July"],
                datasets: [{
                    label: "My First dataset",
@@ -39,6 +42,7 @@
                    pointStrokeColor: "#fff",
                    pointHighlightFill: "#fff",
                    pointHighlightStroke: "rgba(220,220,220,1)",
+                //    set this data = self.data;
                    data: [65, 59, 80, 81, 56, 55, 40]
                }, {
                    label: "My Second dataset",
