@@ -8,16 +8,15 @@
     ]);
     function ContractIndexControllerFunction(ContractFactory){
         this.contracts = ContractFactory.query(function(response){
-            this.totalNum = 0;
-            this.totalmissing = 0;
+            var totalNum = 0.00;
+            var totalmissing = 0;
             response.forEach(function(contract){
                 if (!contract.dollar_amt) {
-                    this.totalmissing += 1;
+                    totalmissing =+ 1;
                 } else {
-                    this.totalNum += contract.dollar_amt;
+                    totalNum =+ parseFloat(contract.dollar_amt).toFixed(2);
                 }
             });
-            console.log(this.totalNum);
         });
     }
 }());
