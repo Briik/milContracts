@@ -4,9 +4,10 @@
     .module("contracts")
     .controller("ContractIndexController", [
         "ContractFactory",
+        "$setTimeout",
         ContractIndexControllerFunction
     ]);
-    function ContractIndexControllerFunction(ContractFactory, $q, $http){
+    function ContractIndexControllerFunction(ContractFactory, $setTimeout){
         this.totalNum = 0.00;
         this.totalmissing = 0;
         this.contracts = ContractFactory.query(function(response){
@@ -18,7 +19,7 @@
                 }
             })
         });
-        this.$timeout(function () {
+        $setTimeout(function () {
             ContractIndexControllerFunction.totalmissing = ContractIndexControllerFunction.totalmissing;
             ContractIndexControllerFunction.totalNum = ContractIndexControllerFunction.totalNum;
         }, 10);
