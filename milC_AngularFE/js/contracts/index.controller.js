@@ -4,24 +4,22 @@
     .module("contracts")
     .controller("ContractIndexController", [
         "ContractFactory",
-        "$setTimeout",
         ContractIndexControllerFunction
     ]);
-    function ContractIndexControllerFunction(ContractFactory, $setTimeout){
-        this.totalNum = 0.00;
-        this.totalmissing = 0;
-        this.contracts = ContractFactory.query(function(response){
-            response.forEach(function(contract){
-                if (!contract.dollar_amt) {
-                    ContractIndexControllerFunction.totalmissing =+ 1;
-                } else {
-                    ContractIndexControllerFunction.totalNum =+ parseFloat(contract.dollar_amt).toFixed(2);
-                }
-            })
-        });
-        $setTimeout(function () {
-            ContractIndexControllerFunction.totalmissing = ContractIndexControllerFunction.totalmissing;
-            ContractIndexControllerFunction.totalNum = ContractIndexControllerFunction.totalNum;
-        }, 10);
+    function ContractIndexControllerFunction(ContractFactory){
+       var self = this;
+       self.totalNum = "LOADING";
+       self.number = 0.00;
+       self.totalmissing = 0;
+       this.contracts = ContractFactory.query(function(response){
+           response.forEach(function(contract){
+               if (!contract.dollar_amt) {
+                   self.totalmissing++;
+               } else {
+                   self.number -= parseFloat(-contract.dollar_amt).toFixed(2);
+                   self.totalNum = (self.number).toLocaleString("currency", "USD");
+               }
+           })
+       });
     }
 }());
