@@ -5,7 +5,7 @@ class CreateContracts < ActiveRecord::Migration
       t.string :link
       t.string :description
       t.datetime :pubdate
-      t.money :dollar_amt
+      t.decimal :dollar_amt, precision: 16, scale: 2
       t.string :creator
     end
   end

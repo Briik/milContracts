@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160108202557) do
     t.string   "link"
     t.string   "description"
     t.datetime "pubdate"
-    t.money    "dollar_amt",  scale: 2
+    t.decimal  "dollar_amt",  precision: 16, scale: 2
     t.string   "creator"
   end
 
