@@ -8,5 +8,6 @@
     ]);
     function ContractIndexControllerFunction(ContractFactory){
         this.contracts = ContractFactory.query();
+        // this.totalNum = TotalNumberFactory.query();
     }
 }());
