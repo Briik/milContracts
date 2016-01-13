@@ -1,8 +1,11 @@
 <h1>Major U.S. DoD Contracts</h1>
 <h3>Contracts over $6.5M in value since July 1, 2014</h3>
-<div data-ng-if="ContractIndexViewModel.contracts"><h3>${{ContractIndexViewModel.totalNum}} has been spent on large military contracts since July 1, 2014</h3>
-<h3>Data is missing from {{ContractIndexViewModel.totalmissing}} of {{ContractIndexViewModel.contracts.length}} reports ({{ContractIndexViewModel.percentTotalMissing}}%).</h3>
+<div data-ng-if="ContractIndexViewModel.contracts">
+    <h3>${{ContractIndexViewModel.totalNum}} has been spent on large military contracts since July 1, 2014</h3>
+    <h3>Data is missing from {{ContractIndexViewModel.totalmissing}} of {{ContractIndexViewModel.contracts.length}} reports ({{ContractIndexViewModel.percentTotalMissing}}%).</h3>
+    <canvas id="myChart" width="400" height="400"></canvas>
 </div>
 <ul>
-<li data-ng-repeat="contract in ContractIndexViewModel.contracts | orderBy:'-pubdate'"><a data-ui-sref="contractShow({id: contract.id})">{{contract.title}}</a></li>
+    <li data-ng-repeat="contract in ContractIndexViewModel.contracts | orderBy:'-pubdate'"><a data-ui-sref="contractShow({id: contract.id})">{{contract.title}}</a></li>
 </ul>
+<script src="js/scripts.js"></script>
