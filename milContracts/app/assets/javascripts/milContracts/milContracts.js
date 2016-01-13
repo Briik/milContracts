@@ -1,4 +1,4 @@
-"use strict";
+"use strict"
 (function(){
     angular
     .module("milContracts", [
@@ -24,4 +24,4 @@
             ...STUFF
         });
     }
-}());
+})
