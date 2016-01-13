@@ -1,8 +1,12 @@
 class ContractsController < ApplicationController
 	def formatted_number(n)
-	  a,b = sprintf("%0.2f", n).split('.')
-	  a.gsub!(/(\d)(?=(\d{3})+(?!\d))/, '\\1,')
-	  "$#{a}.#{b}"
+		if !n
+			return 0
+		else
+	  	a,b = sprintf("%0.2f", n).split('.')
+	  	a.gsub!(/(\d)(?=(\d{3})+(?!\d))/, '\\1,')
+	  	"$#{a}.#{b}"
+		end
 	  end
 
 	  def index
