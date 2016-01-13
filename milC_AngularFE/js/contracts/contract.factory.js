@@ -1,5 +1,5 @@
 "use strict";
-(funciton(){
+(function(){
     angular
     .module("contracts")
     .factory("ContractFactory", [
@@ -7,6 +7,6 @@
         ContractFactoryFunction
     ]);
     function ContractFactoryFunction($resource){
-        return $resource( "http://localhost3000/contracts/:id" );
+        return $resource( "http://localhost:3000/contracts/:id" );
     };
 }());

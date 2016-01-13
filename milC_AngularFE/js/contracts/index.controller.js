@@ -8,6 +8,5 @@
     ]);
     function ContractIndexControllerFunction(ContractFactory){
         this.contracts = ContractFactory.query();
-        // do not need CRUD
     }
 }());
