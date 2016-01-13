@@ -7,14 +7,14 @@
         ContractIndexControllerFunction
     ]);
     function ContractIndexControllerFunction(ContractFactory){
+        this.totalNum = 0.00;
+        this.totalmissing = 0;
         this.contracts = ContractFactory.query(function(response){
-            var totalNum = 0.00;
-            var totalmissing = 0;
             response.forEach(function(contract){
                 if (!contract.dollar_amt) {
-                    totalmissing =+ 1;
+                    ContractIndexControllerFunction.totalmissing =+ 1;
                 } else {
-                    totalNum =+ parseFloat(contract.dollar_amt).toFixed(2);
+                    ContractIndexControllerFunction.totalNum =+ parseFloat(contract.dollar_amt).toFixed(2);
                 }
             });
         });
