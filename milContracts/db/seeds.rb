@@ -7,18 +7,14 @@ doc = Nokogiri::XML(open("http://www.defense.gov/DesktopModules/ArticleCS/RSS.as
     config.options = Nokogiri::XML::ParseOptions::NONET
 end
 
-# use days as an array!  days[0] is the most recent day's report!
 days = doc.xpath("//item")
-
 for day in days do
-
     int_money = /(?=[$])[$,\d]{1,16}/.match(day.xpath("description").to_s).to_s
     if int_money
         money = int_money[1..-1].to_s.split(",").join("")
     elsif !int_money
         money = nil
     end
-
     Contract.create({
      title: day.xpath("title").to_s.split("\n")[1],
      link: day.xpath("link").to_s.split(">")[1].split("<")[0],

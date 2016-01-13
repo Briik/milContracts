@@ -1,9 +1,14 @@
 class ContractsController < ApplicationController
+	# using formatted_number instead of number_to_currency because later is not supported
 	def formatted_number(n)
-	  a,b = sprintf("%0.2f", n).split('.')
-	  a.gsub!(/(\d)(?=(\d{3})+(?!\d))/, '\\1,')
-	  "$#{a}.#{b}"
+		if !n
+			return 0;
+		elsif n
+	  	a,b = sprintf("%0.2f", n).split('.')
+	  	a.gsub!(/(\d)(?=(\d{3})+(?!\d))/, '\\1,')
+	  	"$#{a}.#{b}"
 	  end
+  end
 
 	  def index
 		  @contracts = Contract.all
@@ -15,11 +20,13 @@ class ContractsController < ApplicationController
 			  return tot
 		  end
 		  @totalNum = formatted_number(get_num)
+		  render json: @contracts.to_json, status: :ok
 	  end
 
 	  def show
 		  @contract = Contract.find(params[:id])
 		  @money = formatted_number(@contract.dollar_amt)
+		  render json: @contract.to_json, status: :ok
       end
 
 	  def update
