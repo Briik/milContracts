@@ -16,45 +16,59 @@
         self.percentTotalMissing = 0;
         self.dataArray = [];
         self.labelArray = [];
+
+        function assignData(contract, year){
+            self.labelArray.push(contract.title);
+            if (!contract.dollar_amt) {
+                self.dataArray.push(0);
+                self.totalmissing++;
+            } else {
+                self.dataArray.push(parseInt(contract.dollar_amt));
+                self.number -= parseFloat(-contract.dollar_amt).toFixed(2);
+                self.totalNum = (self.number).toLocaleString("currency", "USD");
+            }
+        };
+
+        function getAYear(contract){
+            var theYear = String(contract.pubdate).substring(0,4);
+            if (theYear == "2014") {
+                return 0;
+            } else if (theYear == "2015") {
+                return 1;
+            } else if (theYear == "2016") {
+                return 2;
+            }
+        };
+
         this.contracts = ContractFactory.query(function(response) {
             response.forEach(function(contract) {
-                self.labelArray.push(contract.title);
-                if (!contract.dollar_amt) {
-                    self.dataArray.push(0);
-                    self.totalmissing++;
-                } else {
-                    self.dataArray.push(parseInt(contract.dollar_amt));
-                    self.number -= parseFloat(-contract.dollar_amt).toFixed(2);
-                    self.totalNum = (self.number).toLocaleString("currency", "USD");
-                }
-            })
-            self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
+                assignData(contract, getAYear(contract));
+            });
+
+        self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
         });
+
         $timeout(function () {
             angular.element(document).ready(function() {
-                // Grab the chart
                 var ctx = $("#myChart").get(0).getContext("2d");
-                // This will get the first returned node in the jQuery collection.
                 Chart.defaults.global.responsive = true;
-                Chart.defaults.global.pointHitDetectionRadius = 2;
-                // new Chart(ctx).PolarArea(data, options);
                 self.info = {
-                    //    set this labels = self.labelArray;
                     labels: self.labelArray,
                     datasets: [{
-                        label: "My First dataset",
+                        label: "Large Defense Contracts By Day",
                         fillColor: "rgba(220,220,220,0.2)",
                         strokeColor: "rgba(220,220,220,1)",
                         pointColor: "rgba(220,220,220,1)",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(220,220,220,1)",
-                        // set this data = self.dataArray;
-                        data: self.dataArray
+                        data: self.dataArray,
                     }]
                 };
-                var contractsOverTime = new Chart(ctx).Line(self.info);
+                var contractsOverTime = new Chart(ctx).Line(self.info, {
+                    pointHitDetectionRadius : 2
+                });
             })
-        }, 1500);
+        }, 1000);
     }
 }());
