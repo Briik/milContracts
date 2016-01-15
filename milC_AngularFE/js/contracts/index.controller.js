@@ -17,7 +17,8 @@
         self.dataArray = [];
         self.labelArray = [];
         self.selectedElements = [];
-        function assignData(contract, year){
+
+        function assignData(contract, year) {
             self.labelArray.push(contract.title);
             if (!contract.dollar_amt) {
                 self.dataArray.push(0);
@@ -29,8 +30,8 @@
             }
         };
 
-        function getAYear(contract){
-            var theYear = String(contract.pubdate).substring(0,4);
+        function getAYear(contract) {
+            var theYear = String(contract.pubdate).substring(0, 4);
             if (theYear == "2014") {
                 return 0;
             } else if (theYear == "2015") {
@@ -45,10 +46,10 @@
                 assignData(contract, getAYear(contract));
             });
 
-        self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
+            self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
         });
 
-        $timeout(function () {
+        $timeout(function() {
             angular.element(document).ready(function() {
                 var ctx = $("#myChart").get(0).getContext("2d");
                 Chart.defaults.global.responsive = true;
@@ -66,13 +67,15 @@
                     }]
                 };
                 var contractsOverTime = new Chart(ctx).Line(self.info, {
-                    pointHitDetectionRadius : 2,
+                    pointHitDetectionRadius: 2,
                     scaleShowVerticalLines: false
                 });
-                document.getElementById('myChart').onclick = function(evt){
+                document.getElementById('myChart').onclick = function(evt) {
                     var activePoints = contractsOverTime.getPointsAtEvent(evt);
                     console.log(activePoints);
-                    self.selectedElements = activePoints;
+                    activePoints.forEach(function(contract) {
+                        self.selectedElements.push(contract)
+                    });
                     // => activePoints is an array of points on the canvas that are at the same position as the click event.
                 };
             })
