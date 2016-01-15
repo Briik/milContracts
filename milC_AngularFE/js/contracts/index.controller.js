@@ -16,7 +16,7 @@
         self.percentTotalMissing = 0;
         self.dataArray = [];
         self.labelArray = [];
-
+        self.selectedElements = [];
         function assignData(contract, year){
             self.labelArray.push(contract.title);
             if (!contract.dollar_amt) {
@@ -69,8 +69,10 @@
                     pointHitDetectionRadius : 2,
                     scaleShowVerticalLines: false
                 });
-                canvas.onclick = function(evt){
-                    var activePoints = myLineChart.getPointsAtEvent(evt);
+                document.getElementById('myChart').onclick = function(evt){
+                    var activePoints = contractsOverTime.getPointsAtEvent(evt);
+                    console.log(activePoints);
+                    self.selectedElements = activePoints;
                     // => activePoints is an array of points on the canvas that are at the same position as the click event.
                 };
             })
