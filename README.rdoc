@@ -1,28 +1,7 @@
-== README
+This app, currently not deployed, is a two-componenet app with an Angular front-end application drawing JSON from a Rails server.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Rails server populates (rake db:seed) by drawing up to 1000 (may be set to more for deployment) results from a US DoD RSS feed. The data is parsed and compiled into a Postgres (SQL) database for storage.  Using the Whenever gem, the rails app also retrieves information daily at 6:30pm, after the newest DoD data is released (6pm), and adds new records to the database.
 
-Things you may want to cover:
+The front end is Angular based, with jQuery and Chart.js integration. To allow for proper manipulation of on-screen data a couple of Angular modules are used: $resource for API call to the Rails app, $timeout to delay jQuery and Chart.js until data is loaded, and $filter for correct display of numerical data in human-readable format.  Also used: $ui.router, $stateParams, and $stateProvider.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Style:  At this moment, no effort has been put into styling the app beyond the chart functionality.
