@@ -70,14 +70,6 @@
                     pointHitDetectionRadius: 2,
                     scaleShowVerticalLines: false
                 });
-                document.getElementById('myChart').onclick = function(evt) {
-                    var activePoints = contractsOverTime.getPointsAtEvent(evt);
-                    console.log(activePoints);
-                    activePoints.forEach(function(contract) {
-                        self.selectedElements.push(contract)
-                    });
-                    // => activePoints is an array of points on the canvas that are at the same position as the click event.
-                };
             })
         }, 1000);
     }
