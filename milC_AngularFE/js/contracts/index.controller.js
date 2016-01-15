@@ -17,6 +17,7 @@
         self.dataArray = [];
         self.labelArray = [];
         self.selectedElements = [];
+
         self.showDiv = function($event){
             console.log($event);
         };
@@ -52,10 +53,17 @@
             self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
         });
 
+        self.getId = function(label){
+                self.contracts.filter(function(obj) {
+                    return (obj.title == label);
+                });
+        };
+
         $timeout(function() {
             angular.element(document).ready(function() {
                 var ctx = $("#myChart").get(0).getContext("2d");
                 Chart.defaults.global.responsive = true;
+
                 self.info = {
                     labels: self.labelArray,
                     datasets: [{
@@ -69,19 +77,19 @@
                         data: self.dataArray,
                     }]
                 };
+
                 var contractsOverTime = new Chart(ctx).Line(self.info, {
                     pointHitDetectionRadius: 2,
                     scaleShowVerticalLines: false
                 });
+
                 self.showDiv = function($event) {
                     var activePoints = contractsOverTime.getPointsAtEvent($event);
-                    console.log(activePoints);
                     self.selectedElements.splice(0,self.selectedElements.length);
                     activePoints.forEach(function(contract) {
                         self.selectedElements.push(contract)
                     });
                     console.log("selectedElements: " + self.selectedElements);
-                    // => activePoints is an array of points on the canvas that are at the same position as the click event.
                 };
             })
         }, 1000);
