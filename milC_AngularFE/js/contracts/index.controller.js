@@ -17,6 +17,9 @@
         self.dataArray = [];
         self.labelArray = [];
         self.selectedElements = [];
+        self.showDiv = function($event){
+            console.log($event);
+        };
 
         function assignData(contract, year) {
             self.labelArray.push(contract.title);
@@ -70,8 +73,8 @@
                     pointHitDetectionRadius: 2,
                     scaleShowVerticalLines: false
                 });
-                document.getElementById('myChart').onclick = function(evt) {
-                    var activePoints = contractsOverTime.getPointsAtEvent(evt);
+                self.showDiv = function($event) {
+                    var activePoints = contractsOverTime.getPointsAtEvent($event);
                     console.log(activePoints);
                     self.selectedElements.splice(0,self.selectedElements.length);
                     activePoints.forEach(function(contract) {

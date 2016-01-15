@@ -6,7 +6,7 @@
 <div data-ng-if="ContractIndexViewModel.contracts">
     <h3>${{ContractIndexViewModel.totalNum}} has been spent on large military contracts since July 1, 2014</h3>
     <h3>Data is missing from {{ContractIndexViewModel.totalmissing}} of {{ContractIndexViewModel.contracts.length}} reports ({{ContractIndexViewModel.percentTotalMissing}}%).</h3>
-    <canvas id="myChart" max-width="1000" max-height="1000"></canvas>
+    <canvas data-ng-click="ContractIndexViewModel.showDiv($event)"  id="myChart" max-width="1000" max-height="1000"></canvas>
 </div>
 <div data-ng-if="!ContractIndexViewModel.contracts">
     <h4>Data is unavailable or your javascript is not functioning.</h4>
