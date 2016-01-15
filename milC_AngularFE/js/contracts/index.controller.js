@@ -66,8 +66,13 @@
                     }]
                 };
                 var contractsOverTime = new Chart(ctx).Line(self.info, {
-                    pointHitDetectionRadius : 2
+                    pointHitDetectionRadius : 2,
+                    scaleShowVerticalLines: false
                 });
+                canvas.onclick = function(evt){
+                    var activePoints = myLineChart.getPointsAtEvent(evt);
+                    // => activePoints is an array of points on the canvas that are at the same position as the click event.
+                };
             })
         }, 1000);
     }
