@@ -22,7 +22,30 @@
             console.log($event);
         };
 
-        function assignData(contract, year) {
+        // self.getId = function(label){
+        //         self.contracts.filter(function(obj) {
+        //             return (obj.title == label)['id'];
+        //         });
+        // };
+
+        function makeVis(contract){
+            var div = document.createElement("div");
+            var ds = div.style;
+            div.className = "bar";
+            ds.width = "2px";
+            ds.height = (contract.dollar_amt / 100000) + "px";
+            ds.background = "lightgreen";
+            ds.margin = "0, auto";
+            ds.display = "inline-block";
+            d3me.appendChild(div);
+        };
+
+        function showInfo(contract){
+            alert('it worked! ' + contract.title);
+        };
+
+        // This is populating the arrays with data on the contracts, used for Charts.js
+        function assignData(contract) {
             self.labelArray.push(contract.title);
             if (!contract.dollar_amt) {
                 self.dataArray.push(0);
@@ -34,64 +57,50 @@
             }
         };
 
-        function getAYear(contract) {
-            var theYear = String(contract.pubdate).substring(0, 4);
-            if (theYear == "2014") {
-                return 0;
-            } else if (theYear == "2015") {
-                return 1;
-            } else if (theYear == "2016") {
-                return 2;
-            }
-        };
-
-        this.contracts = ContractFactory.query(function(response) {
+        self.contracts = ContractFactory.query(function(response) {
+            var d3me = document.getElementById("d3me");
+            d3me.style.background = "black";
             response.forEach(function(contract) {
-                assignData(contract, getAYear(contract));
-            });
+                assignData(contract);
+                makeVis(contract);
+                });
 
             self.percentTotalMissing = ((self.totalmissing / self.contracts.length) * 100).toFixed(1);
         });
-
-        self.getId = function(label){
-                self.contracts.filter(function(obj) {
-                    return (obj.title == label);
-                });
-        };
-
-        $timeout(function() {
-            angular.element(document).ready(function() {
-                var ctx = $("#myChart").get(0).getContext("2d");
-                Chart.defaults.global.responsive = true;
-
-                self.info = {
-                    labels: self.labelArray,
-                    datasets: [{
-                        label: "Large Defense Contracts By Day",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: self.dataArray,
-                    }]
-                };
-
-                var contractsOverTime = new Chart(ctx).Line(self.info, {
-                    pointHitDetectionRadius: 2,
-                    scaleShowVerticalLines: false
-                });
-
-                self.showDiv = function($event) {
-                    var activePoints = contractsOverTime.getPointsAtEvent($event);
-                    self.selectedElements.splice(0,self.selectedElements.length);
-                    activePoints.forEach(function(contract) {
-                        self.selectedElements.push(contract)
-                    });
-                    console.log("selectedElements: " + self.selectedElements);
-                };
-            })
-        }, 1000);
+        // Charts.js below, it makes a pretty chart but is not great for many datapoints
+        // $timeout(function() {
+        //     angular.element(document).ready(function() {
+        //         var ctx = $("#myChart").get(0).getContext("2d");
+        //         Chart.defaults.global.responsive = true;
+        //
+        //         self.info = {
+        //             labels: self.labelArray,
+        //             datasets: [{
+        //                 label: "Large Defense Contracts By Day",
+        //                 fillColor: "rgba(220,220,220,0.2)",
+        //                 strokeColor: "rgba(220,220,220,1)",
+        //                 pointColor: "rgba(220,220,220,1)",
+        //                 pointStrokeColor: "#fff",
+        //                 pointHighlightFill: "#fff",
+        //                 pointHighlightStroke: "rgba(220,220,220,1)",
+        //                 data: self.dataArray,
+        //             }]
+        //         };
+        //
+        //         var contractsOverTime = new Chart(ctx).Line(self.info, {
+        //             pointHitDetectionRadius: 2,
+        //             scaleShowVerticalLines: false
+        //         });
+        //
+        //         self.showDiv = function($event) {
+        //             var activePoints = contractsOverTime.getPointsAtEvent($event);
+        //             self.selectedElements.splice(0,self.selectedElements.length);
+        //             activePoints.forEach(function(contract) {
+        //                 self.selectedElements.push(contract)
+        //             });
+        //             console.log("selectedElements: " + self.selectedElements);
+        //         };
+        //     })
+        // }, 1000);
     }
 }());

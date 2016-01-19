@@ -1,0 +1,11 @@
+html{
+    color: white;
+    background: black;
+}
+#d3me{
+    width: 100%;
+    margin: 0, auto;
+}
+.bar:hover{
+    background: yellow;
+}
